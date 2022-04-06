@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'com.githur.arthurpicht'
+group 'com.github.arthurpicht'
 version '0.0.1'
 
 java {
