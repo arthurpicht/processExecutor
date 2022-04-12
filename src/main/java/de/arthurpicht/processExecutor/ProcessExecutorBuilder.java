@@ -51,7 +51,7 @@ public class ProcessExecutorBuilder {
     }
 
     public ProcessExecutorBuilder withWorkingDirectory(Path workingDirectory) {
-        assertArgumentNotNull("commands", commands);
+        assertArgumentNotNull("workingDirectory", commands);
         this.workingDirectory = workingDirectory;
         return this;
     }
