@@ -15,8 +15,8 @@ public class ProcessExecutor {
     private final StandardErrorHandler standardErrorHandler;
     private final ProcessExecutionExceptionCache processExecutionExceptionCache;
 
-    private Thread handleStandardOutThreat;
-    private Thread handleStandardErrorThreat;
+    private Thread handleStandardOutThread;
+    private Thread handleStandardErrorThread;
     private boolean executed;
     private int exitCode;
 
@@ -26,8 +26,8 @@ public class ProcessExecutor {
         this.standardOutHandler = standardOutHandler;
         this.standardErrorHandler = standardErrorHandler;
         this.processExecutionExceptionCache = new ProcessExecutionExceptionCache();
-        this.handleStandardOutThreat = null;
-        this.handleStandardErrorThreat = null;
+        this.handleStandardOutThread = null;
+        this.handleStandardErrorThread = null;
         this.executed = false;
         this.exitCode = -1;
     }
@@ -46,8 +46,8 @@ public class ProcessExecutor {
 
             this.exitCode = this.processWrapper.waitFor();
 
-            if (handleStandardOutThreat != null) handleStandardOutThreat.join();
-            if (handleStandardErrorThreat != null) handleStandardErrorThreat.join();
+            if (handleStandardOutThread != null) handleStandardOutThread.join();
+            if (handleStandardErrorThread != null) handleStandardErrorThread.join();
 
             if (this.processExecutionExceptionCache.hasProcessExecutionException())
                 throw this.processExecutionExceptionCache.getProcessExecutionException();
@@ -75,30 +75,30 @@ public class ProcessExecutor {
     }
 
     private void handleStandardOut() {
-        this.handleStandardOutThreat = null;
+        this.handleStandardOutThread = null;
         if (this.standardOutHandler != null) {
-            this.handleStandardOutThreat = new Thread(() -> {
+            this.handleStandardOutThread = new Thread(() -> {
                 try {
                     this.standardOutHandler.handleOutput(this.processWrapper.getStandardOut());
                 } catch (IOException e) {
                     this.processExecutionExceptionCache.setProcessExecutionExceptionStdOut(e);
                 }
             });
-            this.handleStandardOutThreat.start();
+            this.handleStandardOutThread.start();
         }
     }
 
     private void handleStandardError() {
-        this.handleStandardErrorThreat = null;
+        this.handleStandardErrorThread = null;
         if (this.standardErrorHandler != null) {
-            this.handleStandardErrorThreat = new Thread(() -> {
+            this.handleStandardErrorThread = new Thread(() -> {
                 try {
                     this.standardErrorHandler.handleOutput(this.processWrapper.getErrorOut());
                 } catch (IOException e) {
                     this.processExecutionExceptionCache.setProcessExecutionExceptionStdError(e);
                 }
             });
-            this.handleStandardErrorThreat.start();
+            this.handleStandardErrorThread.start();
         }
     }
 

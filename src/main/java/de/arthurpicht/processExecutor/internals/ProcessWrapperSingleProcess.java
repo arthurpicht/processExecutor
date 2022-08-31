@@ -14,7 +14,7 @@ public class ProcessWrapperSingleProcess implements ProcessWrapper {
     }
 
     @Override
-    public void start() throws IOException, InterruptedException {
+    public void start() throws IOException {
         this.process = this.processBuilder.start();
     }
 

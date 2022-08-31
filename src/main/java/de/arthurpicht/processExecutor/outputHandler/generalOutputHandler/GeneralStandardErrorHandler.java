@@ -1,6 +1,7 @@
 package de.arthurpicht.processExecutor.outputHandler.generalOutputHandler;
 
 import de.arthurpicht.processExecutor.CollectionHandler;
+import de.arthurpicht.processExecutor.ProcessExecutor;
 import de.arthurpicht.processExecutor.StandardErrorHandler;
 import org.slf4j.Logger;
 import org.slf4j.event.Level;

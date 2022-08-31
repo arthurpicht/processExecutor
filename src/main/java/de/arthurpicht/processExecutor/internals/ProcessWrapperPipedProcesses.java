@@ -17,7 +17,7 @@ public class ProcessWrapperPipedProcesses implements ProcessWrapper {
     }
 
     @Override
-    public void start() throws IOException, InterruptedException {
+    public void start() throws IOException {
         this.processList = ProcessBuilder.startPipeline(this.processBuilderList);
     }
 

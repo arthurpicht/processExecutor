@@ -1,6 +1,7 @@
 package de.arthurpicht.processExecutor.outputHandler.generalOutputHandler;
 
 import de.arthurpicht.processExecutor.CollectionHandler;
+import de.arthurpicht.processExecutor.ProcessExecutor;
 import org.slf4j.Logger;
 import org.slf4j.event.Level;
 
@@ -9,8 +10,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.slf4j.event.Level.TRACE;
 
 /**
  * Handles standard out of {@link ProcessExecutor} for different destinations:
