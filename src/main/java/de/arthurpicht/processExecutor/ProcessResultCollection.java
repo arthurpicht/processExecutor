@@ -11,19 +11,19 @@ public class ProcessResultCollection {
 
     public ProcessResultCollection(
             ProcessExecutor processExecutor,
-            CollectionHandler collectionHandlerStdOut) {
+            StandardOutHandler standardOutHandler) {
         this.exitCode = processExecutor.getExitCode();
-        this.stdOutLines = collectionHandlerStdOut.getLines();
+        this.stdOutLines = standardOutHandler.getLines();
         this.errorOutLines = new ArrayList<>();
     }
 
     public ProcessResultCollection(
             ProcessExecutor processExecutor,
-            CollectionHandler collectionHandlerStdOut,
-            CollectionHandler collectionHandlerErrOut) {
+            StandardOutHandler standardOutHandler,
+            StandardErrorHandler standardErrorHandler) {
         this.exitCode = processExecutor.getExitCode();
-        this.stdOutLines = collectionHandlerStdOut.getLines();
-        this.errorOutLines = collectionHandlerErrOut.getLines();
+        this.stdOutLines = standardOutHandler.getLines();
+        this.errorOutLines = standardErrorHandler.getLines();
     }
 
     public int getExitCode() {

@@ -15,8 +15,8 @@ import java.util.List;
  * Handles standard out of {@link ProcessExecutor} for different destinations:
  *
  * <ul>
- *     <li>writes to console in real time</li>
- *     <li>writes to logger</li>
+ *     <li>writes to console in real time (optional)</li>
+ *     <li>writes to logger (optional)</li>
  *     <li>collects output for further processing</li>
  * </ul>
  */
@@ -43,7 +43,9 @@ public abstract class AbstractGeneralOutputHandler implements CollectionHandler 
                 char theChar = (char) data;
                 if (theChar == '\n') {
                     String line = stringBuilder.toString();
-                    log(line);
+                    if (this.logger != null) {
+                        log(line);
+                    }
                     this.lines.add(line);
                     stringBuilder = new StringBuilder();
                 } else {

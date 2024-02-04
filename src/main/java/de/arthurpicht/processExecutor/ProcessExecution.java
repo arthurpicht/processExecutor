@@ -26,9 +26,9 @@ public class ProcessExecution {
         return processExecutor.execute();
     }
 
-    public static ProcessResultCollection execute(Logger logger, boolean verbose, String... commands) throws ProcessExecutionException {
-        GeneralStandardOutHandler stdOutHandler = new GeneralStandardOutHandler(logger, verbose);
-        GeneralStandardErrorHandler stdErrorHandler = new GeneralStandardErrorHandler(logger, verbose);
+    public static ProcessResultCollection execute(Logger logger, boolean toConsole, String... commands) throws ProcessExecutionException {
+        GeneralStandardOutHandler stdOutHandler = new GeneralStandardOutHandler(logger, toConsole);
+        GeneralStandardErrorHandler stdErrorHandler = new GeneralStandardErrorHandler(logger, toConsole);
         ProcessExecutor processExecutor = new ProcessExecutorBuilder()
                 .withCommands(commands)
                 .withStandardOutHandler(stdOutHandler)
@@ -42,9 +42,27 @@ public class ProcessExecution {
         );
     }
 
-    public static ProcessResultCollection execute(Logger logger, boolean verbose, InputStream inputStream, String... commands) throws ProcessExecutionException {
-        GeneralStandardOutHandler stdOutHandler = new GeneralStandardOutHandler(logger, verbose);
-        GeneralStandardErrorHandler stdErrorHandler = new GeneralStandardErrorHandler(logger, verbose);
+    public static ProcessResultCollection execute(
+            StandardOutHandler standardOutHandler, StandardErrorHandler standardErrorHandler, String... commands)
+            throws ProcessExecutionException {
+
+        ProcessExecutor processExecutor = new ProcessExecutorBuilder()
+                .withCommands(commands)
+                .withStandardOutHandler(standardOutHandler)
+                .withStandardErrorHandler(standardErrorHandler)
+                .build();
+
+        processExecutor.execute();
+
+        return new ProcessResultCollection(
+                processExecutor, standardOutHandler, standardErrorHandler
+        );
+    }
+
+
+    public static ProcessResultCollection execute(Logger logger, boolean toConsole, InputStream inputStream, String... commands) throws ProcessExecutionException {
+        GeneralStandardOutHandler stdOutHandler = new GeneralStandardOutHandler(logger, toConsole);
+        GeneralStandardErrorHandler stdErrorHandler = new GeneralStandardErrorHandler(logger, toConsole);
         ProcessExecutor processExecutor = new ProcessExecutorBuilder()
                 .withCommands(commands)
                 .withInput(inputStream)
@@ -56,6 +74,24 @@ public class ProcessExecution {
 
         return new ProcessResultCollection(
                 processExecutor, stdOutHandler, stdErrorHandler
+        );
+    }
+
+    public static ProcessResultCollection execute(
+            InputStream inputStream, StandardOutHandler standardOutHandler, StandardErrorHandler standardErrorHandler,
+            String... commands)
+            throws ProcessExecutionException {
+        ProcessExecutor processExecutor = new ProcessExecutorBuilder()
+                .withCommands(commands)
+                .withInput(inputStream)
+                .withStandardOutHandler(standardOutHandler)
+                .withStandardErrorHandler(standardErrorHandler)
+                .build();
+
+        processExecutor.execute();
+
+        return new ProcessResultCollection(
+                processExecutor, standardOutHandler, standardErrorHandler
         );
     }
 

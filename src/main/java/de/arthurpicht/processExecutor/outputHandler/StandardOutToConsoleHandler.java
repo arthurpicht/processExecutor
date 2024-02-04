@@ -5,9 +5,11 @@ import de.arthurpicht.processExecutor.StandardOutHandler;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Writes stdOut to console including all control characters.
+ * Writes stdOut to console including all control characters. No output is cached.
  */
 public class StandardOutToConsoleHandler implements StandardOutHandler {
 
@@ -24,4 +26,8 @@ public class StandardOutToConsoleHandler implements StandardOutHandler {
         }
     }
 
+    @Override
+    public List<String> getLines() {
+        return new ArrayList<>();
+    }
 }
