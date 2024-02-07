@@ -1,0 +1,11 @@
+Release notes
+
+v0.0.5
+07.02.2024
+---
+- GeneralOutputHandler extended:
+    - create by builder
+    - output to console and logger are optional
+- JDK 17
+- gradle 8.5
+
