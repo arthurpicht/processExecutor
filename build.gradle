@@ -3,14 +3,8 @@ plugins {
     id 'maven-publish'
 }
 
-group 'com.github.arthurpicht'
-version '0.0.5'
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
+group = 'com.github.arthurpicht'
+version = '0.0.6'
 
 repositories {
     mavenCentral()
@@ -19,10 +13,10 @@ repositories {
 
 dependencies {
     implementation 'com.github.arthurpicht:utils-core:1.13.0'
-    implementation 'com.github.arthurpicht:utils-io:0.0.18'
+    implementation 'com.github.arthurpicht:utils-io:0.0.20'
     implementation 'org.slf4j:slf4j-api:2.0.7'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.3'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
 }
 
 test {
