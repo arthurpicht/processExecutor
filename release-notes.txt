@@ -1,5 +1,10 @@
 Release notes
 
+v0.0.7
+04.11.2024
+---
+- switch publishing from jitpack.io to github.com
+
 v0.0.5
 07.02.2024
 ---
