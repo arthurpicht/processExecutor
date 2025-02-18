@@ -39,6 +39,11 @@ public class GeneralStandardOutHandler extends AbstractGeneralOutputHandler impl
             return this;
         }
 
+        public Builder withConsoleOutput(boolean toConsole) {
+            this.toConsole = toConsole;
+            return this;
+        }
+
         public GeneralStandardOutHandler build() {
             return new GeneralStandardOutHandler(this.logger, this.logLevel, this.toConsole);
         }

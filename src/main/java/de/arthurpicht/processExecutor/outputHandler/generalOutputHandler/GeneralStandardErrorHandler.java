@@ -24,18 +24,23 @@ public class GeneralStandardErrorHandler extends AbstractGeneralOutputHandler im
         private boolean toConsole = false;
         private Level logLevel = Level.ERROR;
 
-        public GeneralStandardErrorHandler.Builder withLogger(Logger logger) {
+        public Builder withLogger(Logger logger) {
             this.logger = logger;
             return this;
         }
 
-        public GeneralStandardErrorHandler.Builder withLogLevel(Level logLevel) {
+        public Builder withLogLevel(Level logLevel) {
             this.logLevel = logLevel;
             return this;
         }
 
-        public GeneralStandardErrorHandler.Builder withConsoleOutput() {
+        public Builder withConsoleOutput() {
             this.toConsole = true;
+            return this;
+        }
+
+        public Builder withConsoleOutput(boolean toConsole) {
+            this.toConsole = toConsole;
             return this;
         }
 

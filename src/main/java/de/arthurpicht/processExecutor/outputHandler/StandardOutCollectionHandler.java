@@ -2,7 +2,7 @@ package de.arthurpicht.processExecutor.outputHandler;
 
 import de.arthurpicht.processExecutor.CollectionHandler;
 import de.arthurpicht.processExecutor.StandardOutHandler;
-import de.arthurpicht.utils.io.InputStreams;
+import de.arthurpicht.utils.io.stream.InputStreams;
 
 import java.io.IOException;
 import java.io.InputStream;
